@@ -1,0 +1,9 @@
+<div ng-controller="HomeController">
+  <div style="height:305px">
+    <div uib-carousel active="active" interval="view.myInterval">
+      <div uib-slide ng-repeat="slide in slides" active="slide.active">
+        <img ng-src="{{slide.image}}" style="margin:auto;"/>
+      </div>
+    </div>
+  </div>
+</div>

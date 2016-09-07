@@ -1,0 +1,29 @@
+body {
+   font-family: 'Tangerine', cursive;
+   color: #4C2700;
+}
+
+.navbar {
+  background-color: #E3C893;
+}
+
+.login {
+  background-color: #E3C893;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  height: 50px;
+  width: 80px;
+  font-size: 25px;
+}
+
+.signup {
+  margin-right: 20px;
+  background-color: #E3C893;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  height: 50px;
+  width: 80px;
+  font-size: 25px;
+}
