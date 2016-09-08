@@ -1,4 +1,4 @@
-var app = angular.module('wanderlist', ['ngRoute', 'ui.bootstrap']);
+var app = angular.module('wanderlist', ['ngRoute', 'ngAnimate', 'ui.bootstrap']);
 
 console.log('booyah');
 
@@ -28,19 +28,6 @@ app.config(function($locationProvider, $routeProvider){
 });
 
 
-app.controller('HomeController', ['$scope', '$routeParams', '$location', '$http', function($scope, $routeParams, $location, $http){
-  $scope.view = {};
-  $scope.view.myInterval = 3000;
-  $scope.active = 0;
-  $scope.view.slides = [
-    {
-      image: 'http://www.nicdarkthemes.com/themes/love-travel/wp/demo-travel/wp-content/uploads/2015/05/love-travel-12-1920.jpg'
-    },
-    {
-      image: 'http://www.beach-backgrounds.com/wallpapers/thumbnails/the-wallpaper-of-amaan-bungalows-in-the-zanzibar-island-1008x380-597.jpg'
-    },
-    {
-      image: 'http://travelingmama.net/wp-content/uploads/2013/08/traveling-mama-road-italy-switzerland-71.jpg'
-    }
-  ];
+app.controller('HomeController', ['$scope', '$animate', '$routeParams', '$location', '$http', function($scope, $animate, $routeParams, $location, $http){
+
 }]);
