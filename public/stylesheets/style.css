@@ -1,10 +1,12 @@
 body {
    font-family: 'Tangerine', cursive;
    color: #4C2700;
+   background-color: #E3C893;
 }
 
 .navbar {
   background-color: #E3C893;
+  margin: 0;
 }
 
 .login {
@@ -26,4 +28,8 @@ body {
   height: 50px;
   width: 80px;
   font-size: 25px;
+}
+
+.carousel-indicators li {
+  visibility: hidden;
 }
