@@ -26,7 +26,6 @@ function user_cities(){
   return knex('user_cities');
 }
 
-
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/public/views/index.html');
 })
