@@ -1,0 +1,19 @@
+<div ng-controller="LoginController">
+  <div class="container-fluid">
+    <p class="text-center title">
+      Login
+    </p>
+    <form method="post">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" placeholder="Email" ng-model="user.email">
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" placeholder="Password" ng-model="user.password">
+      </div>
+    </form>
+    <input class="btn login" type="submit" ng-click="view.login(user)" value="Login">
+    <a href="#/">Home</a>
+  </div>
+</div>

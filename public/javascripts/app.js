@@ -1,4 +1,5 @@
-var app = angular.module('wanderlist', ['ngRoute', 'ngAnimate', 'ui.bootstrap']);
+
+var app = angular.module('wanderlist', ['ngRoute', 'ui.bootstrap', 'ngAnimate']);
 
 console.log('booyah');
 
@@ -9,6 +10,16 @@ app.config(function($locationProvider, $routeProvider){
       templateUrl: 'views/templates/home.html',
       controller: 'HomeController',
       controllerAs: 'home'
+    })
+    .when('/login', {
+      templateUrl: '/views/templates/login.html',
+      controller: 'LoginController',
+      controllerAs: 'login'
+    })
+    .when('/signup', {
+      templateUrl: '/views/templates/signup.html',
+      controller: 'SignupController',
+      controllerAs: 'signup'
     })
     .when('/user', {
       templateUrl: 'views/templates/user.html',
@@ -28,6 +39,29 @@ app.config(function($locationProvider, $routeProvider){
 });
 
 
-app.controller('HomeController', ['$scope', '$animate', '$routeParams', '$location', '$http', function($scope, $animate, $routeParams, $location, $http){
+app.controller('HomeController', ['$scope', '$routeParams', '$http', function($scope, $routeParams, $http) {
+
+  $scope.view = {};
+
+}]);
+
+app.controller('LoginController', ['$scope', 'routeParams', '$location', '$http',  function($scope, $routeParams, $location, $http){
+
+  $scope.view = {};
+
+  $scope.view.login = function(user) {
+    console.log(user);
+    $http({
+      method: 'POST',
+      url: '/login',
+      data: user
+    }).success(function(){
+      $location.url('/users');
+    })
+  }
+
+}]);
+
+app.controller('SignupController', ['$scope', function($scope){
 
 }]);
