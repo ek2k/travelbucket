@@ -3,14 +3,14 @@
     <p class="text-center title">
       Login
     </p>
-    <form method="post">
+    <form action="/login" method="post">
       <div class="form-group">
         <label for="email">Email</label>
-        <input type="email" class="form-control" id="email" placeholder="Email" ng-model="user.email">
+        <input style="font-size: 25px" type="email" class="form-control" id="email" placeholder="Email" ng-model="user.email">
       </div>
       <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" class="form-control" id="password" placeholder="Password" ng-model="user.password">
+        <input style="font-size: 25px" type="password" class="form-control" id="password" placeholder="Password" ng-model="user.password">
       </div>
     </form>
     <input class="btn login" type="submit" ng-click="view.login(user)" value="Login">

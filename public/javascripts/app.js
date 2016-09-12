@@ -45,7 +45,7 @@ app.controller('HomeController', ['$scope', '$routeParams', '$http', function($s
 
 }]);
 
-app.controller('LoginController', ['$scope', 'routeParams', '$location', '$http',  function($scope, $routeParams, $location, $http){
+app.controller('LoginController', ['$scope', '$routeParams', '$location', '$http',  function($scope, $routeParams, $location, $http){
 
   $scope.view = {};
 
@@ -62,6 +62,19 @@ app.controller('LoginController', ['$scope', 'routeParams', '$location', '$http'
 
 }]);
 
-app.controller('SignupController', ['$scope', function($scope){
+app.controller('SignupController', ['$scope', '$routeParams', '$location', '$http', function($scope, $routeParams, $location, $http){
+
+  $scope.view = {};
+
+  $scope.view.signup = function(user) {
+    console.log(user);
+    $http({
+      method: 'POST',
+      url: '/users',
+      data: user
+    }).success(function(){
+      $location.url(':id/users');
+    })
+  }
 
 }]);
