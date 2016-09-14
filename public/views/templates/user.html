@@ -1,13 +1,16 @@
 <div ng-controller="UserController">
-  <!-- <nav class="navbar navbar-default" ng-controller="HomeController">
+  <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="/" style="font-size: 50px; color: #4C2700">Welcome to Wanderlist</a>
+        <a class="navbar-brand" href="/" style="font-size: 50px; color: #4C2700">Wanderlist</a>
       </div>
-    <div class="navbar-right">
-
     </div>
-    </div>
-  </nav> -->
-  <h1>Logged in</h1>
+  </nav>
+  <table>
+    <tr ng-repeat="user in view.users">
+      <td>{{user.fname}}</td>
+      <td>{{user.email}}</td>
+      <td>{{user.home_city}}</td>
+    </tr>
+  </table>
 </div>

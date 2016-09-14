@@ -57,12 +57,6 @@ app.get('/users', function(req, res){
   })
 });
 
-app.get('/users/:id', function(req, res) {
-  users().where('id', req.params.id).first().then(function(result){
-    res.json(result);
-  })
-})
-
 app.post('/users', function(req, res){
   var hash = bcrypt.hashSync(req.body.password, 8);
   users().insert({
@@ -70,8 +64,20 @@ app.post('/users', function(req, res){
     lname: req.body.lname,
     password: hash,
     email: req.body.email,
-    home_city: req.body.homeCity
+    home_city: req.body.home_city
   }).then(function(result){
+    res.json(result);
+  })
+})
+
+app.get('/users/:id', function(req, res) {
+  users().where('id', req.params.id).first().then(function(result){
+    res.json(result);
+  })
+})
+
+app.put('/users/:id', function(req, res) {
+  users().where('id', req.params.id).first().then(function(result){
     res.json(result);
   })
 })
@@ -91,7 +97,9 @@ app.delete('/users/:id', function(req, res) {
 app.post('/login',
   passport.authenticate('local', { failureRedirect: '/login' }),
   function(req, res) {
-    res.redirect('/users/:id');
+    users().where('id', req.params.id).first().then(function(result){
+      res.json('result');
+    })
   });
 
 
