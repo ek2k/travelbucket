@@ -50,3 +50,17 @@ a:visited {
 .title {
   font-size: 50px;
 }
+
+.search {
+  font-size: 25px;
+}
+
+input {
+  height: 40px;
+  width: 250px;
+  font-size: 25px;
+}
+
+button {
+  background-color: #E3C893;
+}

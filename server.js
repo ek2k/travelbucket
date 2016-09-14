@@ -8,6 +8,8 @@ var bcrypt = require('bcrypt');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
+require('dotenv').config();
+
 passport.use(new LocalStrategy({
   usernameField: 'email',
   passwordField: 'password'
@@ -76,8 +78,12 @@ app.get('/users/:id', function(req, res) {
   })
 })
 
-app.put('/users/:id', function(req, res) {
-  users().where('id', req.params.id).first().then(function(result){
+app.post('/users/:id/edit', function(req, res) {
+  users().where('id', req.params.id).update({
+    email: req.body.email,
+    home_city: req.body.home_city,
+    password: req.body.password
+  }).then(function(result){
     res.json(result);
   })
 })
@@ -94,12 +100,10 @@ app.delete('/users/:id', function(req, res) {
 //   failureFlash: true
 // )});
 
-app.post('/login',
-  passport.authenticate('local', { failureRedirect: '/login' }),
+app.get('/login',
+  passport.authenticate('local', { failureRedirect: '/' }),
   function(req, res) {
-    users().where('id', req.params.id).first().then(function(result){
-      res.json('result');
-    })
+    res.send(req.user);
   });
 
 

@@ -99,11 +99,10 @@ app.controller('LoginController', ['$scope', '$routeParams', '$location', '$http
 
   $scope.view.login = function(user) {
     $http({
-      method: 'POST',
+      method: 'GET',
       url: '/login',
       data: user
-    }).success(function(){
-      console.log(user);
+    }).success(function(res){
       $location.url('/users');
     })
   }
@@ -142,14 +141,29 @@ app.controller('UserController', ['$scope', '$routeParams', '$location', '$http'
 app.controller('UserViewController', ['$scope', '$routeParams', '$location', '$http', function($scope, $routeParams, $location, $http){
 
   var id = $routeParams.id;
-
   $scope.view = {};
+  $scope.view.editValue = true;
+
+  $scope.view.editUser = function() {
+    $scope.view.editValue = !$scope.view.editValue;
+  }
+
+  $scope.view.change = function(data) {
+    console.log(data);
+    $http({
+      method: 'POST',
+      url: '/users/' + id + '/edit',
+      data: data
+    }).success(function() {
+      $scope.view.editValue = !$scope.view.editValue;
+    })
+  }
+
 
   $http({
     method: 'GET',
     url: '/users/' + id,
   }).success(function(res){
-    console.log(res);
     $scope.view.users = res;
   })
 

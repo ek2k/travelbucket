@@ -1,3 +1,44 @@
 <div ng-controller="UserViewController">
-  <h1>This works</h1>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#/" style="font-size: 50px; color: #4C2700">Wanderlist</a>
+      </div>
+      <div class="navbar-form navbar-right">
+        <form class="citySearch" action="destination.html" method="post">
+          <button type="submit" class="btn" ng-click="searchCity()">
+            <span class="glyphicon glyphicon-search"></span>
+          </button>
+          <input type="text" name="search" placeholder="Where do you want to wander next?">
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <div class="jumbotron">
+    <h1>Welcome, {{view.users.fname}}</h1>
+    <h3>Home: {{view.users.home_city}}</h3>
+    <button type="button" class="btn" ng-click="view.editUser()">Edit</button>
+  </div>
+
+  <div ng-hide="view.editValue" class="ng-hide">
+    <div class="container">
+      <form>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input style="font-size: 25px" type="email" class="form-control" id="email" ng-model="edit.email">
+        </div>
+        <div class="form-group">
+          <label for="home">Home City</label>
+          <input style="font-size: 25px" type="text" class="form-control" id="home" ng-model="edit.home_city">
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input style="font-size: 25px" type="password" class="form-control" id="password" ng-model="edit.password">
+        </div>
+        <button class="btn btn-primary" type="button" ng-click="view.change(edit)">Change me</button>
+      </form>
+    </div>
+  </div>
+
 </div>
