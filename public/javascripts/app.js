@@ -1,55 +1,12 @@
-// var app = angular.module('wanderlist', ['ui.router', 'ngResource', 'wanderlist.services', 'ui.bootstrap']);
-//
-// app.config(function($stateProvider){
-//   $stateProvider.state('users', {
-//     url: '/users',
-//     templateUrl: 'views/templates/user.html',
-//     controller: 'UserController'
-//   }).state('viewUser', {
-//     url: '/users/:id/view',
-//     templateUrl: 'views/templates/userView.html',
-//     controller: 'UserViewController'
-//   }).state('newUser', {
-//     url: '/users/new',
-//     templateUrl: 'views/templates/signup.html',
-//     controller: 'SignupController'
-//   }).state('editUser', {
-//     url: '/users/edit',
-//     templateUrl: 'views/templates/editUser.html',
-//     controller: 'UserController'
-//   });
-// }).run(function($state){
-//   $state.go('users');
-// })
-//
-//
-//
-// app.controller('UserController', function($scope, $state, $window, User){
-//   $scope.view = {};
-//   $scope.view.users = User.query();
-//   console.log($scope.view.users);
-// })
-//
-// app.controller('UserViewController', function($scope, $stateParams, User){
-//   $scope.view = {};
-//   $scope.view.user = User.get({id: $stateParams.id});
-// })
-//
-// app.controller('SignupController', function($scope, $state, $stateParams, User){
-//   $scope.view = {};
-//   $scope.view.user = new User();
-//   $scope.view.signup = function() {
-//     $scope.view.user.$save(function(){
-//       $state.go('users');
-//     })
-//   }
-// })
-
-
-
 var app = angular.module('wanderlist', ['ngRoute', 'ui.bootstrap', 'ngAnimate', 'ngResource']);
 
 console.log('booyah');
+
+app.factory('cityFactory', function(){
+  var cityObject = {};
+  cityObject.city = ['New York', 'Miami', 'San Francisco', 'Denver', 'Seattle'];
+  return cityObject.city;
+})
 
 app.config(function($locationProvider, $routeProvider){
 
@@ -114,13 +71,14 @@ app.controller('SignupController', ['$scope', '$routeParams', '$location', '$htt
   $scope.view = {};
 
   $scope.view.signup = function(user) {
-    console.log(user);
     $http({
       method: 'POST',
       url: '/users',
       data: user
-    }).success(function(){
-      $location.url('/users');
+    }).then(function(data){
+      $scope.view.users = data;
+      var id = $scope.view.users.data[0];
+      $location.url('/users/' + id + '/view');
     })
   }
 
@@ -138,11 +96,55 @@ app.controller('UserController', ['$scope', '$routeParams', '$location', '$http'
   })
 }])
 
-app.controller('UserViewController', ['$scope', '$routeParams', '$location', '$http', function($scope, $routeParams, $location, $http){
+app.controller('UserViewController', ['$scope', '$routeParams', '$location', '$http', 'cityFactory', function($scope, $routeParams, $location, $http, cityFactory){
 
   var id = $routeParams.id;
+  var city;
+  var key;
   $scope.view = {};
   $scope.view.editValue = true;
+  $scope.view.cities = cityFactory;
+
+  $http({
+    method: 'GET',
+    url: '/users/' + id,
+  }).success(function(res){
+    $scope.view.users = res;
+  })
+
+  $http({
+    method: 'GET',
+    url: '/getenv',
+  }).success(function(res){
+    key = res;
+  })
+
+  $scope.view.destCity = function(val) {
+    switch(val) {
+      case 'New York':
+        city = 'LGA';
+        break;
+      case 'San Francisco':
+        city = 'SFO';
+        break;
+      case 'Seattle':
+        city = 'SEA';
+        break;
+      case 'Denver':
+        city = 'DEN';
+        break;
+      default:
+        city = 'MIA';
+    }
+    $http({
+      method: "GET",
+      url: 'http://crossorigin.me/http://partners.api.skyscanner.net/apiservices/browsedates/v1.0/US/USD/en-us/aus-iata/'+city+'-iata/2016-09-22/2016-09-29?apikey='+key
+    }).then(function(res){
+      console.log(res);
+    })
+  }
+
+
 
   $scope.view.editUser = function() {
     $scope.view.editValue = !$scope.view.editValue;
@@ -158,13 +160,5 @@ app.controller('UserViewController', ['$scope', '$routeParams', '$location', '$h
       $scope.view.editValue = !$scope.view.editValue;
     })
   }
-
-
-  $http({
-    method: 'GET',
-    url: '/users/' + id,
-  }).success(function(res){
-    $scope.view.users = res;
-  })
 
 }])

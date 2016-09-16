@@ -5,12 +5,12 @@
         <a class="navbar-brand" href="#/" style="font-size: 50px; color: #4C2700">Wanderlist</a>
       </div>
       <div class="navbar-form navbar-right">
-        <form class="citySearch" action="destination.html" method="post">
-          <button type="submit" class="btn" ng-click="searchCity()">
-            <span class="glyphicon glyphicon-search"></span>
-          </button>
-          <input type="text" name="search" placeholder="Where do you want to wander next?">
-        </form>
+        <div class="btn-group">
+          <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">Where do you want to Wander?</button>
+          <ul class="dropdown-menu">
+            <li><a href ng-click="view.destCity(city)" ng-repeat="city in view.cities">{{city}}</a></li>
+          </ul>
+        </div>
       </div>
     </div>
   </nav>

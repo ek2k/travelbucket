@@ -61,12 +61,11 @@ app.get('/users', function(req, res){
 
 app.post('/users', function(req, res){
   var hash = bcrypt.hashSync(req.body.password, 8);
-  users().insert({
+  users().returning('id').insert({
     fname: req.body.fname,
     lname: req.body.lname,
     password: hash,
     email: req.body.email,
-    home_city: req.body.home_city
   }).then(function(result){
     res.json(result);
   })
@@ -90,7 +89,7 @@ app.post('/users/:id/edit', function(req, res) {
 
 app.delete('/users/:id', function(req, res) {
   users().where('id', req.params.id).first().then(function(result){
-    res.json('result');
+    res.json(result);
   })
 })
 
@@ -106,8 +105,14 @@ app.get('/login',
     res.send(req.user);
   });
 
+app.get('/getenv', function(req,res){
+  var env = process.env['API_KEY'];
+  res.json(env);
+})
 
-
+app.get('http://crossorigin.me/http://partners.api.skyscanner.net/apiservices/browsedates/v1.0/US/USD/en-us/aus-iata/lga-iata/2016-09-22/2016-09-29?apikey='+process.env['API_KEY'], function(req, res){
+  res.json(res)
+})
 
 
 
