@@ -138,7 +138,7 @@ app.controller('UserViewController', ['$scope', '$routeParams', '$location', '$h
     }
     $http({
       method: "GET",
-      url: 'http://crossorigin.me/http://partners.api.skyscanner.net/apiservices/browsedates/v1.0/US/USD/en-us/aus-iata/'+city+'-iata/2016-09-22/2016-09-29?apikey='+key
+      url: 'http://partners.api.skyscanner.net/apiservices/browsedates/v1.0/US/USD/en-us/aus-iata/'+city+'-iata/2016-09-22/2016-09-29?apikey='+key
     }).then(function(res){
       console.log(res);
     })

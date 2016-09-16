@@ -110,9 +110,6 @@ app.get('/getenv', function(req,res){
   res.json(env);
 })
 
-app.get('http://crossorigin.me/http://partners.api.skyscanner.net/apiservices/browsedates/v1.0/US/USD/en-us/aus-iata/lga-iata/2016-09-22/2016-09-29?apikey='+process.env['API_KEY'], function(req, res){
-  res.json(res)
-})
 
 
 
