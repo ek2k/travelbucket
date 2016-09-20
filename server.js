@@ -93,12 +93,6 @@ app.delete('/users/:id', function(req, res) {
   })
 })
 
-// app.post('/login', passport.authenticate('local', {
-//   successRedirect: '/user',
-//   failureRedirect: '/login',
-//   failureFlash: true
-// )});
-
 app.get('/login',
   passport.authenticate('local', { failureRedirect: '/' }),
   function(req, res) {

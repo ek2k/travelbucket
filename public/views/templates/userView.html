@@ -16,8 +16,26 @@
   </nav>
 
   <div class="jumbotron">
-    <h1>Welcome, {{view.users.fname}}</h1>
-    <h3>Home: {{view.users.home_city}}</h3>
+    <div class="welcome">
+      <h1>Welcome, {{view.users.fname}}</h1>
+      <div class="col-md-6">
+        <p class="input-group">
+          <input type="text" class="form-control" uib-datepicker-popup ng-model="view.depDate" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+        </p>
+      </div>
+      <div class="col-md-6">
+        <p class="input-group">
+          <input type="text" class="form-control" uib-datepicker-popup ng-model="view.arrDate" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+        </p>
+      </div>
+
+    </div>
     <button type="button" class="btn" ng-click="view.editUser()">Edit</button>
   </div>
 
@@ -40,5 +58,8 @@
       </form>
     </div>
   </div>
-
+  <div>
+    <table class="flightInfo">
+    </table>
+  </div>
 </div>

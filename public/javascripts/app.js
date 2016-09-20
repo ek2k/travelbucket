@@ -96,14 +96,33 @@ app.controller('UserController', ['$scope', '$routeParams', '$location', '$http'
   })
 }])
 
-app.controller('UserViewController', ['$scope', '$routeParams', '$location', '$http', 'cityFactory', function($scope, $routeParams, $location, $http, cityFactory){
+app.controller('UserViewController', ['$scope', '$routeParams', '$location', '$http', '$filter', 'cityFactory', function($scope, $routeParams, $location, $http, $filter, cityFactory){
 
   var id = $routeParams.id;
   var city;
   var key;
+  var fare;
   $scope.view = {};
   $scope.view.editValue = true;
   $scope.view.cities = cityFactory;
+
+  $scope.popup1 = {
+    opened: false
+  };
+
+  $scope.popup2 = {
+    opened: false
+  };
+
+  $scope.open1 = function() {
+    $scope.popup1.opened = true;
+  };
+
+  $scope.open2 = function() {
+    $scope.popup2.opened = true;
+  };
+
+  $scope.view.depDate = $filter()
 
   $http({
     method: 'GET',
@@ -138,9 +157,10 @@ app.controller('UserViewController', ['$scope', '$routeParams', '$location', '$h
     }
     $http({
       method: "GET",
-      url: 'http://partners.api.skyscanner.net/apiservices/browsedates/v1.0/US/USD/en-us/aus-iata/'+city+'-iata/2016-09-22/2016-09-29?apikey='+key
+      url: 'http://terminal2.expedia.com/x/mflights/search?departureDate='+$scope.view.depDate+'&returnDate='+$scope.view.arrDate+'&departureAirport=AUS&arrivalAirport='+city+'&apikey='+key
     }).then(function(res){
-      console.log(res);
+      fare = res.data.offers[0].averageTotalPricePerTicket.formattedPrice;
+      $(".flightInfo").append("<tr><td>Austin to " + val + ": " + fare + "</td></tr>");
     })
   }
 
