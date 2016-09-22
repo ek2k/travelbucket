@@ -215,7 +215,7 @@ app.controller('UserViewController', ['$scope', '$routeParams', '$location', '$h
         fare = res.data.offers[i].averageTotalPricePerTicket.formattedPrice;
 
         $(".flightInfo").append(
-          '<div class="col-sm-4"><div class="card text-center"><img class="card-img-top img-responsive" src=' + pic + '><div class="card-block"><ul class="list-group list-group-flush"><li class="list-group-item">Departing<br> '+airline1+'<br>Dep: '+depTime1+'<br>Arr: '+arrTime1+'</li><li class="list-group-item">Returning<br> '+airline2+'<br>Dep: '+depTime2+'<br>Arr: '+arrTime2+'</li><li class="list-group-item">Price: '+fare+'</li></ul></div></div>'
+          '<div class="col-sm-4"><div class="card text-center"><img class="card-img-top img-responsive" src=' + pic + '><div class="card-block"><ul class="list-group list-group-flush"><li class="list-group-item">Departing<br> '+airline1+'<br>Dep: '+depTime1+'<br>Arr: '+arrTime1+'</li><li class="list-group-item">Returning<br> '+airline2+'<br>Dep: '+depTime2+'<br>Arr: '+arrTime2+'</li><li class="list-group-item">Price: '+fare+'  <button type="button" class="btn btn-primary btn-small save"><a href="#/users/1/dashboard">Save</a></button></li></ul></div></div>'
         );
       }
     })
