@@ -172,7 +172,7 @@ app.controller('UserViewController', ['$scope', '$routeParams', '$location', '$h
     switch(val) {
       case 'New York':
         city = 'LGA';
-        pic = 'http://www.fourseasons.com/content/dam/fourseasons/images/web/NYF/NYF_395crop_1280x486.jpg/jcr:content/renditions/cq5dam.web.1280.1280.jpeg';
+        pic = 'https://crossorigin.me/http://www.fourseasons.com/content/dam/fourseasons/images/web/NYF/NYF_395crop_1280x486.jpg/jcr:content/renditions/cq5dam.web.1280.1280.jpeg';
         break;
       case 'San Francisco':
         city = 'SFO';
@@ -192,7 +192,7 @@ app.controller('UserViewController', ['$scope', '$routeParams', '$location', '$h
     }
     $http({
       method: "GET",
-      url: 'https://crossorigin.me/http://terminal2.expedia.com/x/mflights/search?departureDate='+depDate+'&returnDate='+arrDate+'&departureAirport=AUS&arrivalAirport='+city+'&apikey='+key
+      url: 'http://terminal2.expedia.com/x/mflights/search?departureDate='+depDate+'&returnDate='+arrDate+'&departureAirport=AUS&arrivalAirport='+city+'&apikey='+key
     }).then(function(res){
       console.log(res);
       $scope.view.spinner = true;
