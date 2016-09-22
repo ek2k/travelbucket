@@ -192,7 +192,7 @@ app.controller('UserViewController', ['$scope', '$routeParams', '$location', '$h
     }
     $http({
       method: "GET",
-      url: 'http://terminal2.expedia.com/x/mflights/search?departureDate='+depDate+'&returnDate='+arrDate+'&departureAirport=AUS&arrivalAirport='+city+'&apikey='+key
+      url: 'https://crossorigin.me/http://terminal2.expedia.com/x/mflights/search?departureDate='+depDate+'&returnDate='+arrDate+'&departureAirport=AUS&arrivalAirport='+city+'&apikey='+key
     }).then(function(res){
       console.log(res);
       $scope.view.spinner = true;
