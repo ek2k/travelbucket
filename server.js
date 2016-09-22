@@ -93,10 +93,8 @@ app.delete('/users/:id', function(req, res) {
   })
 })
 
-app.get('/login',
-  passport.authenticate('local', { failureRedirect: '/' }),
-  function(req, res) {
-    res.send(req.user);
+app.get('/login', function(req, res) {
+    console.log(req.body);
   });
 
 app.get('/getenv', function(req,res){

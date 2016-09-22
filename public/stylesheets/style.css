@@ -1,5 +1,5 @@
 body {
-   font-family: 'Tangerine', cursive;
+   font-family: 'Slabo 27px', serif;
    color: #4C2700;
    background-color: #E3C893;
 }
@@ -66,5 +66,19 @@ button {
 }
 
 .btn {
-  font-size: 25px;
+  font-size: 20px;
+}
+
+.jumbotron {
+  background: url('http://kingofwallpapers.com/travel/travel-022.jpg');
+  background-size: cover;
+  height: 250px;;
+}
+
+.editButton {
+  display: inline;
+}
+
+.dashpic {
+  height: 125px;
 }

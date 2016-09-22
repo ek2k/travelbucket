@@ -2,43 +2,41 @@
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="#/" style="font-size: 50px; color: #4C2700">Wanderlist</a>
-      </div>
-      <div class="navbar-form navbar-right">
-        <div class="btn-group">
-          <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">Where do you want to Wander?</button>
-          <ul class="dropdown-menu">
-            <li><a href ng-click="view.destCity(city)" ng-repeat="city in view.cities">{{city}}</a></li>
-          </ul>
-        </div>
+        <a class="navbar-center" href="#/" style="font-size: 40px; color: #4C2700">Wanderlist</a>
       </div>
     </div>
   </nav>
 
   <div class="jumbotron">
-    <div class="welcome">
-      <h1>Welcome, {{view.users.fname}}</h1>
-      <div class="col-md-6">
+    <div class="userView">
+      <div class="welcome">
+        <h1>Welcome, <a href ng-click="view.editUser()">{{view.users.fname}}</a></h1>
+      </div>
+      <div class="col-md-4">
         <p class="input-group">
-          <input type="text" class="form-control" uib-datepicker-popup ng-model="view.depDate" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
-          <span class="input-group-btn">
-            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
-          </span>
+          Departure Date: <input type="date" ng-model="view.depDate">
         </p>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-4">
         <p class="input-group">
-          <input type="text" class="form-control" uib-datepicker-popup ng-model="view.arrDate" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
-          <span class="input-group-btn">
-            <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
-          </span>
+          Returning Date: <input type="date" ng-model="view.arrDate">
         </p>
       </div>
-
+      <div class="btn-group col-md-4">
+        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">Where do you want to Wander?</button>
+        <ul class="dropdown-menu">
+          <li><a href ng-click="view.destCity(city)" ng-repeat="city in view.cities">{{city}}</a></li>
+        </ul>
+      </div>
     </div>
-    <button type="button" class="btn" ng-click="view.editUser()">Edit</button>
   </div>
-
+  <br>
+  <div class="showFlightInfo text-center" class="ng-hide" ng-hide="view.showFlightInfo">
+    <span us-spinner ng-hide="view.spinner"></span>
+    <h3>Austin -> {{view.destination}}</h3>
+    <div class="flightInfo">
+    </div>
+  </div>
   <div ng-hide="view.editValue" class="ng-hide">
     <div class="container">
       <form>
@@ -57,9 +55,5 @@
         <button class="btn btn-primary" type="button" ng-click="view.change(edit)">Change me</button>
       </form>
     </div>
-  </div>
-  <div>
-    <table class="flightInfo">
-    </table>
   </div>
 </div>
